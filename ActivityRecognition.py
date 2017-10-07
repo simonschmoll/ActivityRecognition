@@ -12,24 +12,31 @@ dataset = pd.read_csv('data/%d.csv' % (num), sep=', ', header=None, engine = 'py
     #     allData = allData.append(dataset)
     #     print('This is all Data at point', num, allData)
     #num += 1
-#print(dataset)
-print(dataset.size)
-
-
 #Feature Extraction
-#For Feature Extraction we use a technique called window overlapping. It has an overlap of 50% between the different
+#For Feature Extraction we use a technique called window overlapping (reserch paper 3). It has an overlap of 50% between the different
 #time series. As a time window 1 second is use --> corresponds to 52 samplings (52 Hz frequency)
 #First we transform the Dataframe into an numpy array
 arrayData = dataset.as_matrix()
 #print(arrayData)
 print(np.size(arrayData))
 #Then we start with the sequencing
-start = 0
-end = 52
+start = int(0)
+end = int(52)
+dataList = []
 while start < np.size(arrayData)-1:
-    newArray = arrayData.sl
-#splitLists = np.array_split(arrayData, sections)
+    newArray = arrayData[slice(start, end)]
+    dataList.append(newArray)
+    start = start + 26
+    end = end + 26
+#To verify our results we print the size of the dataList--> as it are 162500 rows we should have (162500/26)
+print(np.size(dataList))
 
-#getting the mean value of the different time sequences
-
-print(np.size(splitLists))
+#Now we need to get the mean value of all sequences
+totalAverageValues = []
+for i in dataList:
+    x_acceleration = np.mean(dataList[i], 1)
+    y_acceleration = np.mean(dataList[i], 2)
+    z_acceleration = np.mean(dataList[i], 3)
+    tempAverageValue = [x_acceleration[0], y_acceleration[0], z_acceleration[0]]
+    totalAverageValues.append(tempAverageValue)
+print(totalAverageValues)
