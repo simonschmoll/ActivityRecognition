@@ -1,17 +1,13 @@
 import pandas as pd
 import numpy as np
+
+
 num = 1
 names_attributes = ['sequentialNumber','xAcceleration','yAcceleration','zAcceleration','lable']
 
-#while (num < 16):
+
 #Specifying engine = python because c engine can not handle sep
 dataset = pd.read_csv('data/%d.csv' % (num), sep=',', header=None, engine = 'python', names = names_attributes)
-    # if num == 1:
-    #     allData = dataset
-    # else:
-    #     allData = allData.append(dataset)
-    #     print('This is all Data at point', num, allData)
-    #num += 1
 
 #Feature Extraction
 #For Feature Extraction we use a technique called window overlapping (reserch paper 3). It has an overlap of 50% between the different
@@ -64,10 +60,28 @@ print(len(dataList))
 
 #Now we need to get the mean value of all sequences
 totalAverageValues = []
+total_label = []
 for row in dataList:
     acceleration = np.nanmean(row, 0)
-    tempAverageValue = [acceleration[1], acceleration[2], acceleration[3], row[0][4]]
+    tempAverageValue = [acceleration[1], acceleration[2], acceleration[3]]
+    label_array = row[0][4]
     totalAverageValues.append(tempAverageValue)
+    total_label.append(label_array)
 print(totalAverageValues)
 print(len(totalAverageValues))
+#print(total_label)
+feature = np.vstack(totalAverageValues)
+target = np.vstack(total_label)
+print(target)
+print(feature)
+
+
+# now we need to learn a random forest classifier (best fit according to  "Pierluigi Casale, Oriol Pujol, and Petia Radeva. Human activity recognition from accelerometer
+# data using a wearable device. Pattern Recognition and Image Analysis, pages 289–296, 2011.
+# [4] Wenchao Jiang and Zhaozheng Yin. Human activity recognition using wearable sensors by")
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_predict
+classifier = RandomForestClassifier()
+prediction = cross_val_predict(classifier, feature, target, cv=5)
 
