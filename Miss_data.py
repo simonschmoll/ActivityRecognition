@@ -11,7 +11,6 @@ while(num < 16):
     for idx in header:
        print(boolData.loc[boolData[idx] == True])
     num += 1
-    # print(dataset.describe())
  #print(allData)
 
  #define the function for  delete rows with 0 Labels
