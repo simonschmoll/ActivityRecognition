@@ -52,7 +52,7 @@ def extract_features(data_list):
         acceleration = np.nanmean(row, 0)
         standard_deviation = np.std(row, 0)
         temp_features = [acceleration[1], acceleration[2], acceleration[3], standard_deviation[1], standard_deviation[2], standard_deviation[3]]
-        label_array = [row[0][4], row[0][4], row[0][4], row[0][4], row[0][4], row[0][4]]
+        label_array = [row[0][4]]
         total_average_values.append(temp_features)
         total_label.append(label_array)
     print(total_average_values)
@@ -72,5 +72,6 @@ from sklearn.feature_selection import chi2
 #chi2 as we are dealing with a classifcation problem
 
 def select_best_feature(feature, target):
-    featureSelector = SelectKBest(chi2, k=1).fit(feature, target)
+    featureSelector = SelectKBest(chi2, k=1).fit_transform(feature, target)
     print(featureSelector)
+    return featureSelector

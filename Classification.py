@@ -4,5 +4,5 @@
 from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_predict
-classifier = RandomForestClassifier().fit(featureAverageValue, target)
-prediction = cross_val_predict(classifier, featureAverageValue, target, cv=5)
+#classifier = RandomForestClassifier().fit(featureAverageValue, target)
+#prediction = cross_val_predict(classifier, featureAverageValue, target, cv=5)
