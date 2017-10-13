@@ -1,0 +1,7 @@
+# while (num < 16):
+# if num == 1:
+#     allData = dataset
+# else:
+#     allData = allData.append(dataset)
+#     print('This is all Data at point', num, allData)
+# num += 1
