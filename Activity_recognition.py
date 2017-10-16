@@ -2,11 +2,11 @@ import pandas as pd
 import numpy as np
 
 from Miss_data import zeroDet
-from DataHandling import read_convert
+from DataHandling import read
 from Feature_extraction_selection import grouping, extract_features,select_best_feature
 # Importing data
-dataframe = read_convert(1)
-
+dataframe = read(1)
+print(dataframe)
 # Delete incorrect Data
 # cleaned_data = zeroDet(dataframe, 0)
 # Just now I will convert by hand
