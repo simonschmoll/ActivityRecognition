@@ -6,7 +6,7 @@ header= ['sequentialNumber','xAcceleration','yAcceleration','zAcceleration','lab
  # @output: array of int without lable 0
 def zeroDet( dataset, value ):
     num = []
-    num=(dataset.loc[dataset['lable'] == value].index.values)
+    num=(dataset.loc[dataset['label'] == value].index.values)
     dataClean=(dataset.drop(num))
     dataClean = dataClean.as_matrix()
     dataClean = dataClean.astype(np.int)
