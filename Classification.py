@@ -1,8 +1,38 @@
 # now we need to learn a random forest classifier (best fit according to  "Pierluigi Casale, Oriol Pujol, and Petia Radeva. Human activity recognition from accelerometer
 # data using a wearable device. Pattern Recognition and Image Analysis, pages 289–296, 2011.
 # [4] Wenchao Jiang and Zhaozheng Yin. Human activity recognition using wearable sensors by")
-from sklearn.model_selection import cross_val_score
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_predict
-#classifier = RandomForestClassifier().fit(featureAverageValue, target)
-#prediction = cross_val_predict(classifier, featureAverageValue, target, cv=5)
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import TimeSeriesSplit
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import metrics
+from sklearn.model_selection import train_test_split
+
+
+#function to classify without crossvalidaion
+
+def classify(feauteres_x,feauteres_y):
+    X_train, X_test, y_train, y_test = train_test_split(feauteres_x, feauteres_y.ravel(), test_size=0.2, random_state=0)
+    X_train.shape, y_train.shape
+    X_test.shape, y_test.shape
+    forest= RandomForestClassifier(n_estimators=100, random_state=0)
+    model = forest.fit(X_train,y_train )
+    predicted_labels = model.predict(X_test)
+    metrics.accuracy_score(y_test, predicted_labels)
+    return;
+
+def CrossValidation(feauteres_x,feauteres_y,kfold):
+    forest = RandomForestClassifier(n_estimators=100, random_state=0)
+    #print(metrics.accuracy_score(y_test, predicted_labels))
+    #print(metrics.average_precision_score())
+    scores = cross_val_score(forest,feauteres_x, feauteres_y.ravel(), cv=kfold)
+    print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+    return;
+
+#time slip
+#
+# tscv = TimeSeriesSplit(n_splits=3)
+# print(tscv)
+#
+# for train, test in tscv.split(features.__getitem__(0)):
+#     print("%s %s" % (train, test))
