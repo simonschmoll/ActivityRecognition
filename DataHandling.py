@@ -18,7 +18,17 @@ def read(data_num):
 
     return dataset
 
-
+#This function checks how balanced the data is
+# @Input: data_array with labels
+# @Output: list with different all counts for the labels
+def count_labels(data_array):
+    result_count = []
+    count = np.int
+    count = 0
+    label_data = data_array[:,[4]]
+    unique, counts = np.unique(label_data, return_counts=True)
+    ret = dict(zip(unique, counts))
+    return ret
 
 
 

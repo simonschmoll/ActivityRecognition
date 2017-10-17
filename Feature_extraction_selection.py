@@ -61,6 +61,7 @@ def extract_features(data_list):
         total_label.append(label_array)
     print(total_average_values)
     print(total_label)
+    print(total_average_values)
     feature = np.vstack(total_average_values)
     target = np.vstack(total_label)
 
