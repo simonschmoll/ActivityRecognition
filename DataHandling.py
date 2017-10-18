@@ -18,9 +18,9 @@ def read(data_num):
 
     return dataset
 
-#This function checks how balanced the data is
+# This function checks how balanced the data is
 # @Input: data_array with labels
-# @Output: list with different all counts for the labels
+# @Output: list with different counts for the labels
 def count_labels(data_array):
     result_count = []
     count = np.int
