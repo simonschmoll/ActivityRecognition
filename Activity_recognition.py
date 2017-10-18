@@ -6,8 +6,7 @@ import matplotlib.pyplot as plt
 from Miss_data import zeroDet
 from DataHandling import read, count_labels
 from Feature_extraction_selection import grouping, extract_features,select_best_feature
-from Classification import classify
-from Classification import CrossValidation
+from Classification import classify,CrossValidation
 # Importing data
 dataframe = read(1)
 #print(dataframe)
