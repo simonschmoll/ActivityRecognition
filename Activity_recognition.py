@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
-
+from mpl_toolkits import mplot3d
+import numpy as np
+import matplotlib.pyplot as plt
 from Miss_data import zeroDet
 from DataHandling import read, count_labels
 from Feature_extraction_selection import grouping, extract_features,select_best_feature
@@ -33,3 +35,16 @@ selected_feature = select_best_feature(features.__getitem__(0), features.__getit
 # print(np.size(dataList))
 # print(dataList)
 
+
+
+#3d plot Graph
+
+def column(matrix, i):
+    return [row[i] for row in matrix]
+
+ax = plt.axes(projection='3d')
+# Data for three-dimensional scattered points
+zdata= column(cleaned_data,3)
+ydata= column(cleaned_data,2)
+xdata= column(cleaned_data,1)
+ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens');

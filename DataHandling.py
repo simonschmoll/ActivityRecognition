@@ -1,6 +1,5 @@
-import pandas as pd
+from pandas import read_csv
 import numpy as np
-
 
 num = 1
 names_attributes = ['sequentialNumber','xAcceleration','yAcceleration','zAcceleration','label']
@@ -10,7 +9,7 @@ names_attributes = ['sequentialNumber','xAcceleration','yAcceleration','zAcceler
 # @params: dataNum
 # @output: dataset (Dataframe)
 def read(data_num):
-    dataset = pd.read_csv('data/%d.csv' % (data_num), sep=',', header=None, engine='python', names=names_attributes)
+    dataset = read_csv('data/%d.csv' % (data_num), sep=',', header=None, engine='python', names=names_attributes)
 
     # Comment in for printing out the array data and the size of the array
     # print(array_data)
