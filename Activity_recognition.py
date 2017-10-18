@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 from Miss_data import zeroDet
 from DataHandling import read, count_labels
 from Feature_extraction_selection import grouping, extract_features,select_best_feature
+from Classification import classify
+from Classification import CrossValidation
 # Importing data
 dataframe = read(1)
 #print(dataframe)
@@ -36,6 +38,9 @@ selected_feature = select_best_feature(features.__getitem__(0), features.__getit
 # print(dataList)
 
 
+classify(selected_feature,features.__getitem__(1))
+
+CrossValidation(selected_feature,features.__getitem__(1),10)
 
 #3d plot Graph
 
