@@ -30,9 +30,7 @@ def CrossValidation(feauteres_x,feauteres_y,kfold):
     return;
 
 #time slip
-#
 # tscv = TimeSeriesSplit(n_splits=3)
 # print(tscv)
-#
 # for train, test in tscv.split(features.__getitem__(0)):
 #     print("%s %s" % (train, test))
