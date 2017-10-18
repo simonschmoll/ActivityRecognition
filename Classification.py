@@ -18,7 +18,7 @@ def classify(feauteres_x,feauteres_y):
     forest= RandomForestClassifier(n_estimators=100, random_state=0)
     model = forest.fit(X_train,y_train )
     predicted_labels = model.predict(X_test)
-    print(metrics.accuracy_score(y_test, predicted_labels))
+    metrics.accuracy_score(y_test, predicted_labels)
     return;
 
 def CrossValidation(feauteres_x,feauteres_y,kfold):
