@@ -19,7 +19,7 @@ def classify(feauteres_x,feauteres_y):
     model = forest.fit(X_train,y_train )
     predicted_labels = model.predict(X_test)
     metrics.accuracy_score(y_test, predicted_labels)
-    return;
+    return
 
 def CrossValidation(feauteres_x,feauteres_y,kfold):
     forest = RandomForestClassifier(n_estimators=100, random_state=0)
@@ -27,7 +27,7 @@ def CrossValidation(feauteres_x,feauteres_y,kfold):
     #print(metrics.average_precision_score())
     scores = cross_val_score(forest,feauteres_x, feauteres_y.ravel(), cv=kfold)
     print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-    return;
+    return
 
 #time slip
 # tscv = TimeSeriesSplit(n_splits=3)
