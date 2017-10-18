@@ -11,8 +11,8 @@ from sklearn.model_selection import train_test_split
 
 #function to classify without crossvalidaion
 
-def classify(feauteres_x,feauteres_y):
-    X_train, X_test, y_train, y_test = train_test_split(feauteres_x, feauteres_y.ravel(), test_size=0.2, random_state=0)
+def classify(x_features, y_features):
+    X_train, X_test, y_train, y_test = train_test_split(x_features, y_features.ravel(), test_size=0.2, random_state=0)
     X_train.shape, y_train.shape
     X_test.shape, y_test.shape
     forest= RandomForestClassifier(n_estimators=100, random_state=0)
@@ -21,11 +21,11 @@ def classify(feauteres_x,feauteres_y):
     metrics.accuracy_score(y_test, predicted_labels)
     return
 
-def CrossValidation(feauteres_x,feauteres_y,kfold):
+def CrossValidation(x_features, y_features, kfold):
     forest = RandomForestClassifier(n_estimators=100, random_state=0)
     #print(metrics.accuracy_score(y_test, predicted_labels))
     #print(metrics.average_precision_score())
-    scores = cross_val_score(forest,feauteres_x, feauteres_y.ravel(), cv=kfold)
+    scores = cross_val_score(forest, x_features, y_features.ravel(), cv=kfold)
     print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
     return
 
