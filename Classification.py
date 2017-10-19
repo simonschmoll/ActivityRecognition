@@ -5,6 +5,8 @@ from sklearn.metrics import confusion_matrix
 import numpy as np
 from sklearn.metrics import f1_score
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_validate
+from sklearn.metrics import recall_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
@@ -54,7 +56,9 @@ def classify(x_features, y_features):
 def CrossValidation(x_features, y_features, kfold):
     forest = RandomForestClassifier(n_estimators=100, random_state=0)
     clf = svm.SVC(kernel='linear', C=1)
-    scoresSv = cross_val_score(clf, x_features, y_features.ravel(), cv=kfold)
+    scores = cross_validate(clf, x_features, y_features, scoring=scoring, cv=kfold, return_train_score=False)
+    sorted(scores.keys())
+    print(scores['test_score', 'fit_time', 'score_time'])
     scores = cross_val_score(forest, x_features, y_features.ravel(), cv=kfold)
     print("Accuracy Random Forest: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
     print("Accuracy with SV: %0.2f (+/- %0.2f)" % (scoresSv.mean(), scoresSv.std() * 2))

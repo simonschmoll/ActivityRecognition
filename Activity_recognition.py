@@ -25,5 +25,5 @@ features = extract_features(grouped_data)
 #splitting of the dataset to divide test and training set, after
 #using k-crossvalidation with two different train model: 1)RandomForest classifier , 2)Super Vector Machine
 classify(features.__getitem__(0),features.__getitem__(1))
-CrossValidation(features.__getitem__(0),features.__getitem__(1),10)
+CrossValidation(features.__getitem__(0),features.__getitem__(1), 5)
 
