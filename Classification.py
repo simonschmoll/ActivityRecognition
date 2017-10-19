@@ -55,6 +55,9 @@ def classify(x_features, y_features):
     print(confusion_matrix(y_test, predicted_labelsSv, labels=[1, 2, 3, 4, 5, 6, 7]))
     return
 
+#function to classify with crossvalidaion:
+#1)Accuracy
+#2)F1score
 
 
 def CrossValidation(x_features, y_features, kfold):
@@ -64,8 +67,10 @@ def CrossValidation(x_features, y_features, kfold):
     scoresSv = cross_validate(clf, x_features, y_features.ravel(), scoring=scoring, cv=kfold, return_train_score=False)
     scores = cross_validate(forest, x_features, y_features.ravel(), scoring=scoring, cv=kfold, return_train_score=False)
     print("Accuracy Random Forest: %0.2f (+/- %0.2f)" % (scores['test_accuracy'].mean(), scores['test_accuracy'].std() * 2))
-    print("F1 Score Random Forest: %0.2f (+/- %0.2f)" % (scoresSv['test_f1_micro'].mean(), scoresSv['test_f1_micro'].std() * 2))
+    print("F1 Score Random Forest: %0.2f (+/- %0.2f)" % (scores['test_f1_micro'].mean(), scores['test_f1_micro'].std() * 2))
     print("Accuracy SVM: %0.2f (+/- %0.2f)" % (scoresSv['test_accuracy'].mean() ,scoresSv['test_accuracy'].std() * 2))
     print("F1 Score SVM: %0.2f (+/- %0.2f)" % (scoresSv['test_f1_micro'].mean() ,scoresSv['test_f1_micro'].std() * 2))
+    print(scores['test_accuracy'])
+    print(scoresSv['test_accuracy'])
     return
 
