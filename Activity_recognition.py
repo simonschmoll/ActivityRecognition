@@ -2,9 +2,8 @@ import pandas as pd
 import numpy as np
 from mpl_toolkits import mplot3d
 import numpy as np
-import matplotlib.pyplot as plt
 from Miss_data import zeroDet
-from DataHandling import read, count_labels
+from DataHandling import read, count_labels ,d3Plot
 from Feature_extraction_selection import grouping, extract_features,select_best_feature
 from Classification import classify,CrossValidation
 # Importing data
@@ -17,7 +16,7 @@ cleaned_data = zeroDet(dataframe, 0)
 # array_data = array_data.astype(np.int)
 # print(np.size(array_data,0))
 
-print(cleaned_data)
+#print(cleaned_data)
 
 #Check how balanced data is
 counts = count_labels(cleaned_data)
@@ -37,18 +36,12 @@ selected_feature = select_best_feature(features.__getitem__(0), features.__getit
 # print(dataList)
 
 
+#we are calling the function for classify our data, first with a simple
+#splitting of the dataset to divide test and training set, after
+#using k-crossvalidation with two different train model: 1)RandomForest classifier , 2)Super Vector Machine
 classify(selected_feature,features.__getitem__(1))
-
 CrossValidation(selected_feature,features.__getitem__(1),10)
 
-#3d plot Graph
 
-def column(matrix, i):
-    return [row[i] for row in matrix]
 
-ax = plt.axes(projection='3d')
-# Data for three-dimensional scattered points
-zdata= column(cleaned_data,3)
-ydata= column(cleaned_data,2)
-xdata= column(cleaned_data,1)
-ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens');
+

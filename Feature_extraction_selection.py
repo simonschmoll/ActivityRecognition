@@ -59,15 +59,15 @@ def extract_features(data_list):
         label_array = [row[0][4]]
         total_average_values.append(temp_features)
         total_label.append(label_array)
-    print(total_average_values)
-    print(total_label)
-    print(total_average_values)
+   # print(total_average_values)
+   # print(total_label)
+    #print(total_average_values)
     feature = np.vstack(total_average_values)
     target = np.vstack(total_label)
 
     # comment in to print out lists
-    # print(feature)
-    # print(target)
+    print(feature)
+    print(target)
     return feature, target
 
 
@@ -80,3 +80,4 @@ def select_best_feature(feature, target):
     featureSelector = SelectKBest(chi2, k=1).fit_transform(feature, target)
     print(featureSelector)
     return featureSelector
+
