@@ -71,19 +71,5 @@ def extract_features(data_list):
     return feature, target
 
 
-#Feature selection
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import chi2
-#chi2 as we are dealing with a classifcation problem
 
-def select_best_feature(feature, target):
-    print(np.shape(feature))
-    featureSelector = SelectKBest(chi2, k=1).fit_transform(feature, target)
-<<<<<<< HEAD
-    print(np.shape(featureSelector))
-    return featureSelector
-=======
-    print(featureSelector)
-    return featureSelector
 
->>>>>>> 94ca5cfc581688543fee51f45c28c2740c0e15a6

@@ -38,6 +38,7 @@ def classify(x_features, y_features):
 
     print(" F1 score Random forest: %f" % f1_score(y_test, predicted_labels, average='macro'))
     print(" F1 score precision with SV: %f" % f1_score(y_test, predicted_labels, average='macro'))
+
     print("Accuracy Random forest: %f" % metrics.accuracy_score(y_test, predicted_labels))
     print("Accuracy with SV: %f" % metrics.accuracy_score(y_test, predicted_labelsSv))
     #By definition a confusion matrix C is such that C_{i, j}
