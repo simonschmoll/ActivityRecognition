@@ -56,6 +56,7 @@ def classify(x_features, y_features):
 def CrossValidation(x_features, y_features, kfold):
     forest = RandomForestClassifier(n_estimators=100, random_state=0)
     clf = svm.SVC(kernel='linear', C=1)
+    scoring = ['fit_time', 'score_time']
     scores = cross_validate(clf, x_features, y_features, scoring=scoring, cv=kfold, return_train_score=False)
     sorted(scores.keys())
     print(scores['test_score', 'fit_time', 'score_time'])
