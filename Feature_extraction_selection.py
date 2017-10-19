@@ -77,6 +77,7 @@ from sklearn.feature_selection import chi2
 #chi2 as we are dealing with a classifcation problem
 
 def select_best_feature(feature, target):
+    print(np.shape(feature))
     featureSelector = SelectKBest(chi2, k=1).fit_transform(feature, target)
-    print(featureSelector)
+    print(np.shape(featureSelector))
     return featureSelector

@@ -21,9 +21,6 @@ def read(data_num):
 # @Input: data_array with labels
 # @Output: list with different counts for the labels
 def count_labels(data_array):
-    result_count = []
-    count = np.int
-    count = 0
     label_data = data_array[:,[4]]
     unique, counts = np.unique(label_data, return_counts=True)
     ret = dict(zip(unique, counts))
