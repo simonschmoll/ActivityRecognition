@@ -11,6 +11,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 from sklearn import svm
+from sklearn.metrics import classification_report
+
+
+
 
 #function to classify without crossvalidaion:
 #we created here funtion to predict with Random forest and SVM the values with a simple division of the dataset.
@@ -47,21 +51,21 @@ def classify(x_features, y_features):
     # is equal to the number of observations known to be in group i but predicted to be in group j.
     print("Confusion Matrix Random forest: ")
     print(confusion_matrix(y_test, predicted_labels, labels=[1, 2, 3, 4, 5, 6, 7]))
-    print("Confusion Matrix with SV: ")
+    print("Confusion Matrix with SVM: ")
     print(confusion_matrix(y_test, predicted_labelsSv, labels=[1, 2, 3, 4, 5, 6, 7]))
     return
 
 
 
 def CrossValidation(x_features, y_features, kfold):
+    scoring = ['accuracy', 'f1_micro']
     forest = RandomForestClassifier(n_estimators=100, random_state=0)
     clf = svm.SVC(kernel='linear', C=1)
-    scoring = ['fit_time', 'score_time']
-    scores = cross_validate(clf, x_features, y_features, scoring=scoring, cv=kfold, return_train_score=False)
-    sorted(scores.keys())
-    print(scores['test_score', 'fit_time', 'score_time'])
-    scores = cross_val_score(forest, x_features, y_features.ravel(), cv=kfold)
-    print("Accuracy Random Forest: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-    print("Accuracy with SV: %0.2f (+/- %0.2f)" % (scoresSv.mean(), scoresSv.std() * 2))
+    scoresSv = cross_validate(clf, x_features, y_features.ravel(), scoring=scoring, cv=kfold, return_train_score=False)
+    scores = cross_validate(forest, x_features, y_features.ravel(), scoring=scoring, cv=kfold, return_train_score=False)
+    print("Accuracy Random Forest: %0.2f (+/- %0.2f)" % (scores['test_accuracy'].mean(), scores['test_accuracy'].std() * 2))
+    print("F1 Score Random Forest: %0.2f (+/- %0.2f)" % (scoresSv['test_f1_micro'].mean(), scoresSv['test_f1_micro'].std() * 2))
+    print("Accuracy SVM: %0.2f (+/- %0.2f)" % (scoresSv['test_accuracy'].mean() ,scoresSv['test_accuracy'].std() * 2))
+    print("F1 Score SVM: %0.2f (+/- %0.2f)" % (scoresSv['test_f1_micro'].mean() ,scoresSv['test_f1_micro'].std() * 2))
     return
 
