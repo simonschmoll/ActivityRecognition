@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import pandas as pd
 import numpy as np
 from mpl_toolkits import mplot3d
@@ -44,7 +42,3 @@ selected_feature = select_best_feature(features.__getitem__(0), features.__getit
 classify(selected_feature,features.__getitem__(1))
 CrossValidation(selected_feature,features.__getitem__(1),10)
 
-
-
-
->>>>>>> 94ca5cfc581688543fee51f45c28c2740c0e15a6
