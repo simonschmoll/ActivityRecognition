@@ -1,7 +1,3 @@
-import pandas as pd
-import numpy as np
-from mpl_toolkits import mplot3d
-import numpy as np
 from Miss_data import zeroDet
 from DataHandling import read, count_labels ,d3Plot
 from Feature_extraction_selection import grouping, extract_features

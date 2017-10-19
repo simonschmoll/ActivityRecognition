@@ -66,8 +66,8 @@ def extract_features(data_list):
     target = np.vstack(total_label)
 
     # comment in to print out lists
-    print(feature)
-    print(target)
+    #print(feature)
+    #print(target)
     return feature, target
 
 

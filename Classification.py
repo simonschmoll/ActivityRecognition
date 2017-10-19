@@ -1,18 +1,14 @@
-# now we need to learn a random forest classifier (best fit according to  "Pierluigi Casale, Oriol Pujol, and Petia Radeva. Human activity recognition from accelerometer
-# data using a wearable device. Pattern Recognition and Image Analysis, pages 289–296, 2011.
-# [4] Wenchao Jiang and Zhaozheng Yin. Human activity recognition using wearable sensors by")
 from sklearn.metrics import confusion_matrix
-import numpy as np
 from sklearn.metrics import f1_score
-from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import cross_validate
-from sklearn.metrics import recall_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 from sklearn import svm
-from sklearn.metrics import classification_report
 
+# now we need to learn a random forest classifier (best fit according to  "Pierluigi Casale, Oriol Pujol, and Petia Radeva. Human activity recognition from accelerometer
+# data using a wearable device. Pattern Recognition and Image Analysis, pages 289–296, 2011.
+# [4] Wenchao Jiang and Zhaozheng Yin. Human activity recognition using wearable sensors by")
 
 
 
@@ -70,7 +66,7 @@ def CrossValidation(x_features, y_features, kfold):
     print("F1 Score Random Forest: %0.2f (+/- %0.2f)" % (scores['test_f1_micro'].mean(), scores['test_f1_micro'].std() * 2))
     print("Accuracy SVM: %0.2f (+/- %0.2f)" % (scoresSv['test_accuracy'].mean() ,scoresSv['test_accuracy'].std() * 2))
     print("F1 Score SVM: %0.2f (+/- %0.2f)" % (scoresSv['test_f1_micro'].mean() ,scoresSv['test_f1_micro'].std() * 2))
-    print(scores['test_accuracy'])
-    print(scoresSv['test_accuracy'])
+    print("Scores for the test folds (Random Forest)",  scores['test_accuracy'])
+    print("Scores for the test folds (Support Vector Machine)", scoresSv['test_accuracy'])
     return
 

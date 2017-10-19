@@ -3,14 +3,12 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
-num = 1
-names_attributes = ['sequentialNumber','xAcceleration','yAcceleration','zAcceleration','label']
-
 #First we transform the Dataframe into an numpy array
 #Specifying engine = python because c engine can not handle 'sep'
 # @params: dataNum
 # @output: dataset (Dataframe)
 def read(data_num):
+    names_attributes = ['sequentialNumber', 'xAcceleration', 'yAcceleration', 'zAcceleration', 'label']
     dataset = read_csv('data/%d.csv' % (data_num), sep=',', header=None, engine='python', names=names_attributes)
 
     # Comment in for printing out the array data and the size of the array
